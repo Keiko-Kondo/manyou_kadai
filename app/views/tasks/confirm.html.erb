@@ -1,0 +1,9 @@
+<h3>確認画面</h3>
+<%= form_with(model: @task, url: tasks_path, local: true) do |form| %>
+  <%= form.hidden_field :task_name %>
+  <%= form.hidden_field :details %>
+  <p>タスク:  <%= @task.task_name %></p>
+  <p>詳細:  <%= @task.details %></p>
+  <%= form.submit "登録する" %>
+  <%= form.submit "戻る", name: "back" %>
+<% end %>

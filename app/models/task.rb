@@ -1,3 +1,3 @@
 class Task < ApplicationRecord
-  validates :task, presence: true, uniqueness: true
+  validates :task_name, presence: true
 end
