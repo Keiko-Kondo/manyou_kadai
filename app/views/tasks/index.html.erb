@@ -1,11 +1,10 @@
-<p id="notice"><%= notice %></p>
 <h3>タスク一覧</h3>
 <table>
   <tbody>
-    <% @tasks.each do |t| %>
+    <% @tasks.each do |task| %>
       <tr>
-        <td><%= t.task_name %></td>
-        <td><%= t.details %></td>
+        <td><%= task.task_name %></td>
+        <td><%= task.details %></td>
         <td><%= link_to 'Show', task_path(task.id) %></td>
         <td><%= link_to 'Edit', edit_task_path(task.id) %></td>
         <td><%= link_to 'Destroy', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
