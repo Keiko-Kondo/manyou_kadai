@@ -9,7 +9,7 @@ Userモデル
     
 Taskモデル    
 
-　 *id | integer  
+   *id | integer  
    *user_id | integer  
    *task_name | string  
    *details | text  
