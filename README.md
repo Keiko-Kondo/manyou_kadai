@@ -7,7 +7,7 @@ Userモデル
   *name | string  
   *password | integer  
     
-Taskモデル  
+Taskモデル    
 
 　 *id | integer  
    *user_id | integer  
