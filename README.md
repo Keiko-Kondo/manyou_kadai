@@ -1,4 +1,4 @@
-#README
+#README  
 ##テーブルスキーマ  
 
 Userモデル  
@@ -7,12 +7,13 @@ Userモデル
   *name | string  
   *password | integer  
     
-  ##Taskモデル  
-　  *id | integer  
-    *user_id | integer  
-    *task_name | string  
-    *details | text  
-    *deadline | date  
-    *status | string  
-    *priority | string  
-    *label | string  
+Taskモデル  
+
+　 *id | integer  
+   *user_id | integer  
+   *task_name | string  
+   *details | text  
+   *deadline | date  
+   *status | string  
+   *priority | string  
+   *label | string  
