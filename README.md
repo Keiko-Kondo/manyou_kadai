@@ -3,11 +3,9 @@
 
 Userモデル  
 
-*id | integer  
-
-*name | string  
-
-*password | integer  
+  *id | integer  
+  *name | string  
+  *password | integer  
     
   ##Taskモデル  
 　  *id | integer  
