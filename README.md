@@ -1,9 +1,13 @@
-＃テーブルスキーマ  
+#README
+##テーブルスキーマ  
 
-  ##Userモデル  
-　  *id | integer  
-    *name | string  
-    *password | integer  
+Userモデル  
+
+*id | integer  
+
+*name | string  
+
+*password | integer  
     
   ##Taskモデル  
 　  *id | integer  
