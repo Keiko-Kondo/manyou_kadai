@@ -3,7 +3,7 @@
 
 Userモデル  
 
-  id | integer  
+  -id | integer  
   *name | string  
   *password | integer  
     
