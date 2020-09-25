@@ -1,19 +1,19 @@
-#README
-##テーブルスキーマ
+#README  
+##テーブルスキーマ  
 
-Userモデル
+Userモデル  
 
-*id | integer
-*name | string
-*password | integer
+* id | integer  
+* name | string  
+* password | integer  
 
-Taskモデル
+Taskモデル  
 
-*id | integer
-*user_id | integer
-*task_name | string
-*details | text
-*deadline | date
-*status | string
-*priority | string
-*label | string
+* id | integer  
+* user_id | integer  
+* task_name | string  
+* details | text  
+* deadline | date  
+* status | string  
+* priority | string  
+* label | string  
