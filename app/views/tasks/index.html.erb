@@ -8,7 +8,7 @@
     </tr>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.task_name %></td>
+        <td class="task_index"><%= task.task_name %></td>
         <td><%= task.details %></td>
         <td><%= task.created_at %></td>
         <td><%= link_to 'Show', task_path(task.id) %></td>
