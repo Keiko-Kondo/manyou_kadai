@@ -7,3 +7,4 @@ ja:
       task:
         task_name: タスク名
         details: 詳細
+        created_at: 作成日時
