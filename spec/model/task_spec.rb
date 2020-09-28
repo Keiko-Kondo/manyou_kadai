@@ -11,7 +11,7 @@ describe 'タスクモデル機能', type: :model do
       it 'バリデーションにひっかかる' do
         task = Task.new(details: nil)
         task.valid?
-        expect(task.errors[:details]).to include("can't be blank")
+        expect(task.errors[:details]).to include("を入力してください")
       end
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
