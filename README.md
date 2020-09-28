@@ -1,19 +1,6 @@
-#README  
-##テーブルスキーマ  
+#herokuへのデプロイ方法  
 
-Userモデル  
-
-  * id | integer  
-  * name | string  
-  * password | integer  
-    
-Taskモデル    
-
-   * id | integer  
-   * user_id | integer  
-   * task_name | string  
-   * details | text  
-   * deadline | date  
-   * status | string  
-   * priority | string  
-   * label | string  
+1. $ rails assets:precompile RAILS_ENV=production を記述し、アセットプリコンパイルを行う。  
+2. $ git add -A　→　$ git commit -m "init"　にてコミットをする。  
+3. $ heroku create　にてherokuに新しいアプリを作成する。  
+4. $ git push heroku master　にてherokuにデプロイする。  
