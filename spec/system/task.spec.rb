@@ -3,19 +3,22 @@ describe 'タスク管理機能', type: :system do
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
-     # テストで使用するためのタスクを作成
-       task = FactoryBot.create(:task, task_name: 'task')
-       # タスク一覧ページに遷移
-       visit tasks_path
-       # visitした（遷移した）page（タスク一覧ページ）に「task」という文字列が
-       # have_contentされているか。（含まれているか。）ということをexpectする（確認・期待する）
-       # expect(page).to have_content 'task'
-       # わざと間違った結果を期待するテストを記載する
+        task = FactoryBot.create(:task,  task_name: 'task')
+        visit tasks_path
        expect(page).to have_content 'task'
-       # expectの結果が true ならテスト成功、false なら失敗として結果が出力される
      end
    end
  end
+   context 'タスクが作成日時の降順に並んでいる場合' do
+      it '新しいタスクが一番上に表示される' do
+        FactoryBot.create(:task,  task_name: 'task1')
+        FactoryBot.create(:task,  task_name: 'task2')
+        visit tasks_path
+        task_list = all('.task_index')
+        expect(task_list[0]).to have_content 'task2'
+        expect(task_list[1]).to have_content 'task1'
+      end
+    end
  describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
