@@ -1,16 +1,29 @@
 <h3>タスク一覧</h3>
+<%= form_tag(tasks_path, method: "get") do %>
+  <%= label_tag :task_name, "タスク名" %><%= text_field_tag :task_name, params[:task_name] %>
+  <%= label_tag :status, "ステータス" %><%= select_tag "status", options_for_select(["選択なし","未着手","着手中","完了"]) %>
+<%= submit_tag '検索' %>
+<% end %>
+
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 <table>
   <tbody>
     <tr>
       <th>タスク名</th>
       <th>詳細</th>
       <th>作成日時</th>
+      <th>終了期限</th>
+      <th>優先順位</th>
+      <th>ステータス</th>
     </tr>
     <% @tasks.each do |task| %>
       <tr>
         <td class="task_index"><%= task.task_name %></td>
         <td><%= task.details %></td>
         <td><%= task.created_at %></td>
+        <td><%= task.deadline %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.status %></td>
         <td><%= link_to 'Show', task_path(task.id) %></td>
         <td><%= link_to 'Edit', edit_task_path(task.id) %></td>
         <td><%= link_to 'Destroy', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
