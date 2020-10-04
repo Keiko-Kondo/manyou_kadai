@@ -2,6 +2,10 @@
 <p>
   <%= @task.task_name %>
   <%= @task.details %>
+  <%= @task.created_at %>
+  <%= @task.deadline %>
+  <%= @task.priority %>
+  <%= @task.status %>
 </p>
 <%= link_to 'Edit', edit_task_path(@task) %>
 <%= link_to 'Back', tasks_path %>

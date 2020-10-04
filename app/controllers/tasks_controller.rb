@@ -2,18 +2,21 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:sort_expired]
-      @tasks = Task.all.order("deadline ASC")
-    else
-      @tasks = Task.all.order("created_at DESC")
-        if params[:task_name].present? || params[:status] != "選択なし"
-          @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
-        elsif params[:task_name].present? || params[:status] == "選択なし"
-          @tasks = Task.where(status: params[:status]) and Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
-        elsif params[:task_name].empty? || params[:status] != "選択なし"
-          @tasks = Task.where(status: params[:status])
-        end
-    end
+    @search_params = search_params
+    @tasks = Task.search(@search_params)
+    @tasks = Task.all.order("deadline ASC") if params[:sort_expired]
+    # else
+    #   @tasks = Task.all.order("created_at DESC")
+    #     if params[:task_name].present? && params[:status] == "選択なし"
+    #       @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
+    #     elsif params[:task_name].present? && params[:status] != "選択なし"
+    #       @tasks = Task.where(status: params[:status]) and Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
+    #     elsif params[:task_name].empty? && params[:status] != "選択なし"
+    #       @tasks = Task.where(status: params[:status])
+    #     elsif params[:task_name].empty? && params[:status] == "選択なし"
+    #       @tasks = Task.all.order("created_at DESC")
+    #     end
+    # end
   end
 
   def new
@@ -70,4 +73,7 @@ class TasksController < ApplicationController
     params.require(:task).permit(:task_name, :details, :deadline, :priority, :status)
   end
 
+  def search_params
+    params.fetch(:search, {}).permit(:task_name, :status)
+  end
 end
