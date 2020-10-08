@@ -4,9 +4,12 @@ class TasksController < ApplicationController
   def index
     @search_params = search_params
     @tasks = Task.search(@search_params)
-    @tasks = Task.all.order("deadline ASC") if params[:sort_expired]
-    # else
-    #   @tasks = Task.all.order("created_at DESC")
+    if params[:sort_expired]
+      @tasks = Task.all.order("deadline ASC").page(params[:page]).per(3)
+    elsif params[:sort_priority]
+      @tasks = Task.all.order("priority DESC").page(params[:page]).per(3)
+    else
+      @tasks = Task.all.order("created_at DESC").page(params[:page]).per(3)
     #     if params[:task_name].present? && params[:status] == "選択なし"
     #       @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
     #     elsif params[:task_name].present? && params[:status] != "選択なし"
@@ -16,7 +19,7 @@ class TasksController < ApplicationController
     #     elsif params[:task_name].empty? && params[:status] == "選択なし"
     #       @tasks = Task.all.order("created_at DESC")
     #     end
-    # end
+    end
   end
 
   def new
