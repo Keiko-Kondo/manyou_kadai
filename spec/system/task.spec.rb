@@ -22,6 +22,7 @@ describe 'タスク管理機能', type: :system do
        it '終了期限の降順に並び替えられたタスク一覧が表示される' do
          FactoryBot.create(:task)
          FactoryBot.create(:second_task)
+         # visit new_task_path
          # fill_in 'task[deadline]', with: '20201002'
          # fill_in 'task[deadline]', with: '20201001'
          visit tasks_path
@@ -31,7 +32,7 @@ describe 'タスク管理機能', type: :system do
          expect(deadline_list[1]).to have_content "2020-10-02 00:00:00 +0900"
        end
      end
-
+   end
      describe '検索機能' do
        before do
          # 必要に応じて、テストデータの内容を変更して構わない
@@ -69,8 +70,8 @@ describe 'タスク管理機能', type: :system do
          end
        end
      end
-  end
-end
+
+
 
 
  describe '新規作成機能' do
@@ -109,3 +110,4 @@ end
        end
      end
   end
+end
