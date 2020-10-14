@@ -1,22 +1,41 @@
 <h3>タスク一覧</h3>
-<table>
+<%= form_with(scope: :search, url: tasks_path, method: "get", local: true) do |f| %>
+  <%= f.label(:task_name, "タスク名") %>
+  <%= f.text_field :task_name %>
+  <%= f.label(:status, "ステータス") %>
+  <%= f.select "status", options_for_select(["未着手","着手中","完了"]), include_blank: true %>
+<%= f.submit '検索' %>
+<% end %>
+<br>
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true"), class: "btn btn-warning" %>
+<%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"), class: "btn btn-warning" %>
+<br>
+<br>
+<table class="table table-bordered table-condensed">
   <tbody>
     <tr>
       <th>タスク名</th>
       <th>詳細</th>
       <th>作成日時</th>
+      <th>終了期限</th>
+      <th>優先順位</th>
+      <th>ステータス</th>
     </tr>
     <% @tasks.each do |task| %>
       <tr>
         <td class="task_index"><%= task.task_name %></td>
         <td><%= task.details %></td>
         <td><%= task.created_at %></td>
-        <td><%= link_to 'Show', task_path(task.id) %></td>
-        <td><%= link_to 'Edit', edit_task_path(task.id) %></td>
-        <td><%= link_to 'Destroy', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="deadline_index"><%= task.deadline %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.status %></td>
+        <td><button type="button" class="btn btn-outline-warning"><%= link_to 'Show', task_path(task.id) %></button></td>
+        <td><button type="button" class="btn btn-outline-danger"><%= link_to 'Edit', edit_task_path(task.id) %></button></td>
+        <td><button type="button" class="btn btn-outline-info"><%= link_to 'Destroy', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @tasks %>
 <br>
-<%= link_to 'タスクの追加', new_task_path %>
+<%= link_to 'タスクの追加', new_task_path, class: "btn btn-success"%>
