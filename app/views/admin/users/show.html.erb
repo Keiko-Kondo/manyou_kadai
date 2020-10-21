@@ -1,0 +1,18 @@
+<h1><%= @user.name %>のページ</h1>
+<p>メールアドレス:<%= @user.email %></p>
+<% @tasks.each do |task| %>
+<table class="table table-bordered table-condensed">
+  <tr>
+    <th>タスク一覧</th>
+  </tr>
+  <tbody>
+  <tr>
+    <td><%= task.task_name %></td>
+  </tr>
+</tbody>
+</table>
+<% end %>
+
+<% if logged_in? %>
+  <%= link_to "タスクを作成する" ,new_task_path %>
+<% end %>

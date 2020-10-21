@@ -1,3 +1,5 @@
+<p><%= current_user.name%>さんがログイン中</p>
+<%= link_to 'マイページ', user_path(current_user.id) %>
 <h3>タスク一覧</h3>
 <%= form_with(scope: :search, url: tasks_path, method: "get", local: true) do |f| %>
   <%= f.label(:task_name, "タスク名") %>
@@ -38,4 +40,4 @@
 </table>
 <%= paginate @tasks %>
 <br>
-<%= link_to 'タスクの追加', new_task_path, class: "btn btn-success"%>
+  <%= link_to 'タスクの追加', new_task_path, class: "btn btn-success"%>
