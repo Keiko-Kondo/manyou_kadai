@@ -1,10 +1,9 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user
+  before_action :authenticate_user, only: [:index]
 
   def index
-
-    # @search = Task.search(search_params)　
+      # @search = Task.search(search_params)　
     @search_params = search_params
     # @tasks = Task.search(@search_params)
     if params[:sort_expired]
@@ -75,16 +74,16 @@ class TasksController < ApplicationController
     params.fetch(:search, {}).permit(:task_name, :status)
   end
 
-  def authenticate_user
-    if @current_user == nil
-      flash[:notice] = 'ログインしてください'
-      redirect_to new_session_path
-    end
-  end
+  # def authenticate_user
+  #   if @current_user == nil
+  #     flash[:notice] = 'ログインしてください'
+  #     redirect_to new_session_path
+  #   end
+  # end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
+  # def current_user
+  #   @current_user ||= User.find_by(id: session[:user_id])
+  # end
 
 
 end

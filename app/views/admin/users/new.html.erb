@@ -15,7 +15,7 @@
     <%= f.label :email %>
     <%= f.email_field :email %>
     <%= f.label :"管理者権限" %>
-    <%= f.select :admin, {'有':'true', '無':'false'}, { include_blank: '選択してください' }  %>
+    <%= f.select :admin, {'無':'false','有':'true'}, { include_blank: '選択してください' }  %>
     <%= f.label :password %>
     <%= f.password_field :password %>
     <%= f.label :password_confirmation %>

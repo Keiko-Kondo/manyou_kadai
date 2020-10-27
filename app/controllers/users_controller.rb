@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
   def new
-    # if logged_in?
-    #   redirect_to tasks_path
-    # else
       @user = User.new
-    # end
+      if logged_in?
+        redirect_to tasks_path
+      end
   end
 
   def create
@@ -18,6 +17,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to tasks_path
+    end
   end
 
   def edit

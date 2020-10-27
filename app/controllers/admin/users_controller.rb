@@ -21,7 +21,8 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = @user.tasks
+    # @tasks = @user.tasks
+    @tasks = @user.tasks.select(:task_name)
   end
 
   def edit
@@ -36,9 +37,16 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    @user.tasks.destroy
-    redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+    # @user.destroy
+    # @user.tasks.destroy
+    # redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+
+    if @user.destroy
+    　@user.tasks.destroy
+      redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+    else
+      redirect_to admin_users_path, alert: "#{@user.errors[:base]}"
+    end
   end
 
 
