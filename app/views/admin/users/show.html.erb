@@ -1,10 +1,11 @@
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス:<%= @user.email %></p>
+<p>タスク一覧</p>
 <% @tasks.each do |task| %>
 <table class="table table-bordered table-condensed">
-  <tr>
+  <!-- <tr>
     <th>タスク一覧</th>
-  </tr>
+  </tr> -->
   <tbody>
   <tr>
     <td><%= task.task_name %></td>

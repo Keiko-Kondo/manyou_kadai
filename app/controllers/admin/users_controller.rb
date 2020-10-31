@@ -42,7 +42,6 @@ class Admin::UsersController < ApplicationController
     # redirect_to admin_users_url, notice: 'User was successfully destroyed.'
 
     if @user.destroy
-    　@user.tasks.destroy
       redirect_to admin_users_url, notice: 'User was successfully destroyed.'
     else
       redirect_to admin_users_path, alert: "#{@user.errors[:base]}"

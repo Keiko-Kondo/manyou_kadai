@@ -55,13 +55,14 @@ end
     context '一般ユーザーが他人の詳細画面に飛ぼうとした場合' do
       it 'タスク一覧画面に遷移する' do
         user = FactoryBot.create(:user, name: "管理者")
-        FactoryBot.build(:user, name: "ユーザー")
+        FactoryBot.create(:second_user, name: "ユーザー")
         visit new_session_path
         fill_in 'Email', with: 'user@user.com'
         fill_in 'Password', with: '111111'
         click_on 'Log in'
-        get 'http://localhost:3000/users/user.id/url'
-        expect(response).to redirect_to("http://localhost:3000/tasks")
+        visit user_path(user.id)
+        expect(page).to have_content 'タスク一覧'
+        # expect(response).to redirect_to 'http://localhost:3000/tasks'
 
      end
    end
