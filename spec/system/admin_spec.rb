@@ -51,6 +51,8 @@ describe '管理画面', type: :system do
       user = FactoryBot.create(:second_user, name: "ユーザー")
       visit edit_admin_user_path(user.id)
       fill_in 'Name', with: 'ユーザー更新'
+      fill_in 'Email', with: 'user@user.com'
+      select '有', from: 'user[admin]'
       fill_in 'Password', with: '111111'
       fill_in 'Password confirmation', with: '111111'
       click_on 'ユーザー更新'

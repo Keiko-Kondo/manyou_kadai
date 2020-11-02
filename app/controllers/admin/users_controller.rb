@@ -44,14 +44,17 @@ class Admin::UsersController < ApplicationController
     if @user.destroy
       redirect_to admin_users_url, notice: 'User was successfully destroyed.'
     else
-      redirect_to admin_users_path, alert: "#{@user.errors[:base]}"
+      # binding.irb
+      redirect_to admin_users_path, alert: "#{@user.errors[:base][0]}"
     end
   end
 
 
   private
     def if_not_admin
+      # flash.now[:alert] = '管理者以外はアクセスできません。'
       redirect_to root_path unless current_user.admin?
+      flash[:notice] = '管理者以外はアクセスできません。'
     end
 
     def set_user

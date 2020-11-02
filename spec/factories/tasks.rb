@@ -6,7 +6,7 @@ FactoryBot.define do
     deadline { '2020-10-02' }
     priority { '中' }
     status { '着手中' }
-    association :user
+    user
   end
   factory :second_task, class: Task do
     task_name { 'test_task2' }
@@ -14,6 +14,6 @@ FactoryBot.define do
     deadline { '2020-10-01' }
     priority { '中' }
     status { '完了' }
-    association :user
+    user
   end
 end
