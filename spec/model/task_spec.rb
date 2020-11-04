@@ -16,9 +16,11 @@ describe 'タスクモデル機能', type: :model do
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(
-          task_name: 'テストタスク',
-          details: 'テスト詳細')
+        # user = FactoryBot.create(:user)
+        task = FactoryBot.create(:task)
+        # task = Task.new(
+        #   task_name: 'テストタスク',
+        #   details: 'テスト詳細')
         expect(task).to be_valid
       end
     end
@@ -26,7 +28,7 @@ describe 'タスクモデル機能', type: :model do
   describe '検索機能' do
     # 必要に応じて、テストデータの内容を変更して構わない
     let!(:task){FactoryBot.create(:task)}
-    let!(:second_task){FactoryBot.create(:second_task)}
+    let!(:second_task){FactoryBot.build(:second_task)}
     # before do
     #   task = FactoryBot.create(:task)
     #   second_task = FactoryBot.create(:second_task)

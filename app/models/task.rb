@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  belongs_to :user
   validates :task_name, presence: true
   validates :details, presence: true
   scope :search, -> (search_params) do
