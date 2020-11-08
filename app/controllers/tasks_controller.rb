@@ -10,10 +10,15 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.order("deadline ASC").page(params[:page]).per(6)
     elsif params[:sort_priority]
       @tasks = current_user.tasks.order("priority DESC").page(params[:page]).per(6)
-    else
-      @tasks = current_user.tasks.search(@search_params).order("created_at DESC").page(params[:page]).per(6)
+    elsif  params[:search].present?
+      if params[:search][:task_name] || params[:search][:status]
+        @tasks = current_user.tasks.search(@search_params).order("created_at DESC").page(params[:page]).per(6)
+      else params[:search][:label_id]
+        @tasks = Task.all
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:search][:label_id] }).order("created_at DESC").page(params[:page]).per(6)
+      #   @tasks = current_user.tasks.labellings.where(params[:search][:label_id]).order("created_at DESC").page(params[:page]).per(6)
+      end
     end
-
   end
 
   def new
@@ -67,11 +72,11 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:task_name, :details, :deadline, :priority, :status)
+    params.require(:task).permit(:task_name, :details, :deadline, :priority, :status, label_ids: [] )
   end
 
   def search_params
-    params.fetch(:search, {}).permit(:task_name, :status)
+      params.fetch(:search, {}).permit(:task_name, :status, :label_id )
   end
 
   # def authenticate_user

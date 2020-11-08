@@ -5,11 +5,19 @@
   <%= form.hidden_field :deadline %>
   <%= form.hidden_field :priority %>
   <%= form.hidden_field :status %>
+  <% @task.label_ids.each do |id| %>
+  <%= form.hidden_field :label_ids, multiple: true, value: id %>
+ <% end %>
   <p>タスク:  <%= @task.task_name %></p>
   <p>詳細:  <%= @task.details %></p>
   <p>終了期限:  <%= @task.deadline %></p>
   <p>優先順位:  <%= @task.priority %></p>
   <p>ステータス:  <%= @task.status %></p>
+  <p>ラベル:
+   <% @task.labels.each do |label| %>
+   <%= label.name %>
+  <% end %>
+　　</p>
   <%= form.submit "登録する" %>
   <%= form.submit "戻る", name: "back" %>
 <% end %>

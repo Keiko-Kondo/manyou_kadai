@@ -10,3 +10,9 @@ User.create!(name: "ユーザー",
              password_confirmation: "111111",
              admin: false
              )
+Label.create!(name: "至急"
+              )
+Label.create!(name: "重要"
+                            )
+Label.create!(name: "保留"
+                                          )
