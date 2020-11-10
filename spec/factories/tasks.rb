@@ -8,8 +8,6 @@ FactoryBot.define do
     status { '着手中' }
     user
 
-    # association :label, factory: :label
-
 
     after(:create) do |task|
       # label = create(:label)
@@ -24,6 +22,7 @@ FactoryBot.define do
     priority { '中' }
     status { '完了' }
     user
+
 
     after(:create) do |task|
       # label = create(:label)
