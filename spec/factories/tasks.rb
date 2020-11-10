@@ -29,6 +29,5 @@ FactoryBot.define do
       # label = create(:label)
       create(:labelling, task: task, label: create(:second_label))
     end
-
-  end
 end
+  end

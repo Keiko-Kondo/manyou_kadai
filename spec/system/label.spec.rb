@@ -7,8 +7,10 @@ describe 'タスク管理機能', type: :system do
         user = FactoryBot.create(:user)
         @task = FactoryBot.create(:task, user: user)
         @label = FactoryBot.create(:label)
-        binding.pry
-        Factroybot.create(:labelling, task: @task, label: @label)
+        @second_label = FactoryBot.create(:second_label)
+        # binding.pry
+        FactoryBot.create(:labelling, task: @task, label: @label)
+        FactoryBot.create(:labelling, task: @task, label: @second_label)
         visit new_session_path
         fill_in 'Email', with: 'admin@admin.com'
         fill_in 'Password', with: '111111'
@@ -46,9 +48,9 @@ describe 'タスク管理機能', type: :system do
             visit tasks_path
             select '必須', from: 'search[label_id]'
             click_on '検索'
-            # expect(page).not_to have_content '至急'
-            expect(page).to have_content '至急'
-            expect(page).to have_content '必須'
+            expect(page).not_to have_content 'test_task2'
+            # expect(page).to have_content '至急'
+            expect(page).to have_content 'test_task1'
           end
         end
 

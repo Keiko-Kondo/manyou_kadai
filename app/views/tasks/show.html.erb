@@ -1,14 +1,27 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <%= @task.task_name %>
-  <%= @task.details %>
-  <%= @task.created_at %>
-  <%= @task.deadline %>
-  <%= @task.priority %>
-  <%= @task.status %>
-  <% @task.labels.each do |label| %>
-  <%= label.name %>
-　<% end %>
-</p>
-<%= link_to 'Edit', edit_task_path(@task) %>
-<%= link_to 'Back', tasks_path %>
+  <div class="">
+    <%= @task.task_name %>
+  </div>
+  <div class="">
+    <%= @task.details %>
+  </div>
+  <div class="">
+    <%= @task.created_at %>
+  </div>
+  <div class="">
+    <%= @task.deadline %>
+  </div>
+  <div class="">
+    <%= @task.priority %>
+  </div>
+  <div class="">
+    <%= @task.status %>
+  </div>
+  <div class="">
+    <% @task.labels.each do |label| %>
+    <%= label.name %>
+　  <% end %>
+  </p>
+  <%= link_to 'Edit', edit_task_path(@task) %>
+  <%= link_to 'Back', tasks_path %>
