@@ -7,6 +7,15 @@ FactoryBot.define do
     priority { '中' }
     status { '着手中' }
     user
+
+    # association :label, factory: :label
+
+
+    after(:create) do |task|
+      # label = create(:label)
+      create(:labelling, task: task, label: create(:label))
+    end
+
   end
   factory :second_task, class: Task do
     task_name { 'test_task2' }
@@ -15,5 +24,11 @@ FactoryBot.define do
     priority { '中' }
     status { '完了' }
     user
+
+    after(:create) do |task|
+      # label = create(:label)
+      create(:labelling, task: task, label: create(:second_label))
+    end
+
   end
 end

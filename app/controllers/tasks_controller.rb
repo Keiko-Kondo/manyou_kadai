@@ -13,11 +13,13 @@ class TasksController < ApplicationController
     elsif  params[:search].present?
       if params[:search][:task_name] || params[:search][:status]
         @tasks = current_user.tasks.search(@search_params).order("created_at DESC").page(params[:page]).per(6)
-      else params[:search][:label_id]
+      elsif params[:search][:label_id]
         @tasks = Task.all
         @tasks = @tasks.joins(:labels).where(labels: { id: params[:search][:label_id] }).order("created_at DESC").page(params[:page]).per(6)
       #   @tasks = current_user.tasks.labellings.where(params[:search][:label_id]).order("created_at DESC").page(params[:page]).per(6)
       end
+    else
+        @tasks = current_user.tasks.search(@search_params).order("created_at DESC").page(params[:page]).per(6)
     end
   end
 
